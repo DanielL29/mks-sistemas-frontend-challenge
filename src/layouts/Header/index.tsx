@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import Cart from "./Cart";
+import Cart from "../../components/Cart";
 import { useState } from "react";
-import CartButton from "./CartButton";
-import Image from "next/image";
-import cartIcon from "../assets/images/cart.svg";
+import CartButton from "../../components/CartButton";
 
 export interface CartStyleProps {
   cartWidth: string;

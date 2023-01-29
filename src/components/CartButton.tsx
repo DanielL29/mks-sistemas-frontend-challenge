@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styled from "styled-components";
 import cartIcon from "../assets/images/cart.svg";
-import { CartStyleProps } from "./Header";
+import { CartStyleProps } from "../layouts/Header";
 
 interface CartButtonProps {
   setCart: (cart: CartStyleProps) => void;
