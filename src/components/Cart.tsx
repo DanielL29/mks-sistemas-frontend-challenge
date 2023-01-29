@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CartStyleProps } from "./Header";
+import { CartStyleProps } from "../layouts/Header";
 
 interface CartProps {
   cart: CartStyleProps;
