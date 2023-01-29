@@ -11,8 +11,8 @@ export default function Product() {
         loader={() => image}
         src={image}
         alt="product"
-        width={30}
-        height={30}
+        width={0}
+        height={0}
       />
       <Content>
         <div>
