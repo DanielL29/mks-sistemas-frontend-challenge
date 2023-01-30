@@ -1,54 +1,6 @@
-import { useAppDispatch } from "@/hooks/useRedux";
-import { increment } from "@/store/features/productCounter";
-import Image from "next/image";
 import styled from "styled-components";
-import shoppingBagIcon from "../assets/images/shopping-bag.svg";
-import Skeleton from "react-loading-skeleton";
 
-interface ProductCardProps {
-  name: string;
-  description: string;
-  photo: string;
-  price: string;
-  isLoading: boolean;
-}
-
-export default function ProductCard({
-  name,
-  description,
-  photo,
-  price,
-  isLoading,
-}: ProductCardProps) {
-  const dispatch = useAppDispatch();
-
-  return (
-    <ProductWrapper>
-      <Image
-        loader={() => photo}
-        src={photo}
-        alt="product"
-        width={0}
-        height={0}
-        unoptimized
-        priority
-      />
-      <Content>
-        <div>
-          <h1>{isLoading ? <Skeleton /> : name}</h1>
-          <PriceTag>R${Number(price)}</PriceTag>
-        </div>
-        <p>{description}</p>
-      </Content>
-      <BuyButton onClick={() => dispatch(increment())}>
-        <Image src={shoppingBagIcon} alt="shopping-bag" />
-        comprar
-      </BuyButton>
-    </ProductWrapper>
-  );
-}
-
-const ProductWrapper = styled.div`
+export const ProductWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -73,7 +25,7 @@ const ProductWrapper = styled.div`
   }
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -106,7 +58,7 @@ const Content = styled.div`
   }
 `;
 
-const PriceTag = styled.div`
+export const PriceTag = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,7 +72,7 @@ const PriceTag = styled.div`
   color: #fff;
 `;
 
-const BuyButton = styled.button`
+export const BuyButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;

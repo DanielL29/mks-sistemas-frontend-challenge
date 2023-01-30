@@ -38,7 +38,7 @@ export const listProducts = createAsyncThunk(
 );
 
 const initialState = {
-  products: [] as Product[],
+  products: Array(8).fill(0) as Product[],
   loading: false,
   error: null as unknown,
 };

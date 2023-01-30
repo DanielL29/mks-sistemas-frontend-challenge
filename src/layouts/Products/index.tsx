@@ -9,9 +9,9 @@ export default function Products() {
   const { products, loading } = useAppSelector((state) => state.listProducts);
 
   useEffect(() => {
-    (async () => {
+    setTimeout(async () => {
       await dispatch(listProducts());
-    })();
+    }, 1500);
 
     return () => {};
   }, []);
@@ -19,15 +19,15 @@ export default function Products() {
   return (
     <ProductsWrapper>
       <div>
-        {products.map((product: any) => {
+        {products.map((product, index) => {
           return (
             <ProductCard
-              key={product.id}
-              name={product.name}
-              description={product.description}
-              photo={product.photo}
-              price={product.price}
-              isLoading={loading}
+              key={product.id || index}
+              name={product.name || ""}
+              description={product.description || ""}
+              photo={product.photo || ""}
+              price={product.price || ""}
+              isLoading={loading || !product}
             />
           );
         })}
