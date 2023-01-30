@@ -6,7 +6,7 @@ export const CartProductWrapper = styled.div`
   justify-content: space-between;
 
   width: 379px;
-  height: 95px;
+  min-height: 95px;
   background-color: #ffffff;
   box-shadow: -2px 2px 10px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
