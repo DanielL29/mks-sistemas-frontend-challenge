@@ -12,13 +12,23 @@ export const productCounter = createSlice({
   reducers: {
     increment: (state) => {
       state.value += 1;
+      localStorage.setItem("productAmount", JSON.stringify(state.value));
     },
     decrement: (state) => {
       state.value -= 1;
+      localStorage.setItem("productAmount", JSON.stringify(state.value));
+    },
+    getLocalValue: (state) => {
+      state.value = JSON.parse(localStorage.getItem("productAmount")!) || 0;
+    },
+    decrementByAmount: (state, action) => {
+      state.value -= action.payload;
+      localStorage.setItem("productAmount", JSON.stringify(state.value));
     },
   },
 });
 
-export const { increment, decrement } = productCounter.actions;
+export const { increment, decrement, getLocalValue, decrementByAmount } =
+  productCounter.actions;
 
 export default productCounter.reducer;

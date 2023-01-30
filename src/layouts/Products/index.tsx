@@ -23,6 +23,7 @@ export default function Products() {
           return (
             <ProductCard
               key={product.id || index}
+              id={product.id}
               name={product.name || ""}
               description={product.description || ""}
               photo={product.photo || ""}

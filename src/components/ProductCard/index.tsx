@@ -4,8 +4,10 @@ import Image from "next/image";
 import shoppingBagIcon from "@/assets/images/shopping-bag.svg";
 import ContentLoader from "react-content-loader";
 import { BuyButton, Content, PriceTag, ProductWrapper } from "./style";
+import { addToCart, incrementCartAmount } from "@/store/features/cartItems";
 
 interface ProductCardProps {
+  id: number;
   name: string;
   description: string;
   photo: string;
@@ -14,6 +16,7 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({
+  id,
   name,
   description,
   photo,
@@ -21,6 +24,19 @@ export default function ProductCard({
   isLoading,
 }: ProductCardProps) {
   const dispatch = useAppDispatch();
+
+  function updateCart() {
+    dispatch(increment());
+    dispatch(
+      addToCart({
+        id,
+        name,
+        photo,
+        price,
+      })
+    );
+    dispatch(incrementCartAmount(Number(price)));
+  }
 
   return (
     <ProductWrapper>
@@ -68,7 +84,7 @@ export default function ProductCard({
           )}
         </p>
       </Content>
-      <BuyButton onClick={() => dispatch(increment())}>
+      <BuyButton onClick={updateCart} disabled={isLoading}>
         <Image src={shoppingBagIcon} alt="shopping-bag" />
         comprar
       </BuyButton>
