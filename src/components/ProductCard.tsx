@@ -1,27 +1,46 @@
+import { useAppDispatch } from "@/hooks/useRedux";
+import { increment } from "@/store/features/productCounter";
 import Image from "next/image";
 import styled from "styled-components";
 import shoppingBagIcon from "../assets/images/shopping-bag.svg";
+import Skeleton from "react-loading-skeleton";
 
-export default function Product() {
-  const image = "https://http.cat/404.jpg";
+interface ProductCardProps {
+  name: string;
+  description: string;
+  photo: string;
+  price: string;
+  isLoading: boolean;
+}
+
+export default function ProductCard({
+  name,
+  description,
+  photo,
+  price,
+  isLoading,
+}: ProductCardProps) {
+  const dispatch = useAppDispatch();
 
   return (
     <ProductWrapper>
       <Image
-        loader={() => image}
-        src={image}
+        loader={() => photo}
+        src={photo}
         alt="product"
         width={0}
         height={0}
+        unoptimized
+        priority
       />
       <Content>
         <div>
-          <h1>Apple Watch Series 4 GPS</h1>
-          <PriceTag>R$399</PriceTag>
+          <h1>{isLoading ? <Skeleton /> : name}</h1>
+          <PriceTag>R${Number(price)}</PriceTag>
         </div>
-        <p>Redesigned from scratch and completely revised.</p>
+        <p>{description}</p>
       </Content>
-      <BuyButton>
+      <BuyButton onClick={() => dispatch(increment())}>
         <Image src={shoppingBagIcon} alt="shopping-bag" />
         comprar
       </BuyButton>
@@ -123,7 +142,7 @@ const BuyButton = styled.button`
   cursor: pointer;
 
   img {
-    height: 16px;
+    height: auto;
     width: 15px;
   }
 `;
