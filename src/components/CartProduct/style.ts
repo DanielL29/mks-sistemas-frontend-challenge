@@ -1,37 +1,6 @@
-import Image from "next/image";
 import styled from "styled-components";
-import closeIcon from "../assets/images/close.svg";
 
-export default function CartProduct() {
-  const image = "https://http.cat/404.jpg";
-
-  return (
-    <CartProductWrapper>
-      <Image
-        loader={() => image}
-        src={image}
-        alt="product"
-        width={0}
-        height={0}
-      />
-      <h1>Apple Watch Series 4 GPS</h1>
-      <Quantity>
-        <h2>Qtd:</h2>
-        <div>
-          <span>-</span>
-          <p>1</p>
-          <span>+</span>
-        </div>
-      </Quantity>
-      <strong>R$399</strong>
-      <FloatClose>
-        <Image src={closeIcon} alt="close" width={0} height={0} />
-      </FloatClose>
-    </CartProductWrapper>
-  );
-}
-
-const CartProductWrapper = styled.div`
+export const CartProductWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -65,7 +34,7 @@ const CartProductWrapper = styled.div`
   }
 `;
 
-const Quantity = styled.div`
+export const Quantity = styled.div`
   color: #000;
 
   h2 {
@@ -100,7 +69,7 @@ const Quantity = styled.div`
   }
 `;
 
-const FloatClose = styled.div`
+export const FloatClose = styled.div`
   position: absolute;
   right: -6px;
   top: -5px;

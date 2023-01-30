@@ -1,35 +1,6 @@
-import Image from "next/image";
 import styled from "styled-components";
-import shoppingBagIcon from "../assets/images/shopping-bag.svg";
 
-export default function Product() {
-  const image = "https://http.cat/404.jpg";
-
-  return (
-    <ProductWrapper>
-      <Image
-        loader={() => image}
-        src={image}
-        alt="product"
-        width={0}
-        height={0}
-      />
-      <Content>
-        <div>
-          <h1>Apple Watch Series 4 GPS</h1>
-          <PriceTag>R$399</PriceTag>
-        </div>
-        <p>Redesigned from scratch and completely revised.</p>
-      </Content>
-      <BuyButton>
-        <Image src={shoppingBagIcon} alt="shopping-bag" />
-        comprar
-      </BuyButton>
-    </ProductWrapper>
-  );
-}
-
-const ProductWrapper = styled.div`
+export const ProductWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -54,7 +25,7 @@ const ProductWrapper = styled.div`
   }
 `;
 
-const Content = styled.div`
+export const Content = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -87,7 +58,7 @@ const Content = styled.div`
   }
 `;
 
-const PriceTag = styled.div`
+export const PriceTag = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,7 +72,7 @@ const PriceTag = styled.div`
   color: #fff;
 `;
 
-const BuyButton = styled.button`
+export const BuyButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -123,7 +94,7 @@ const BuyButton = styled.button`
   cursor: pointer;
 
   img {
-    height: 16px;
+    height: auto;
     width: 15px;
   }
 `;

@@ -1,18 +1,36 @@
-import Product from "@/components/Product";
+import ProductCard from "@/components/ProductCard";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { listProducts } from "@/store/features/listProducts";
 import styled from "styled-components";
+import { useEffect } from "react";
 
 export default function Products() {
+  const dispatch = useAppDispatch();
+  const { products, loading } = useAppSelector((state) => state.listProducts);
+
+  useEffect(() => {
+    setTimeout(async () => {
+      await dispatch(listProducts());
+    }, 1500);
+
+    return () => {};
+  }, []);
+
   return (
     <ProductsWrapper>
       <div>
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
+        {products.map((product, index) => {
+          return (
+            <ProductCard
+              key={product.id || index}
+              name={product.name || ""}
+              description={product.description || ""}
+              photo={product.photo || ""}
+              price={product.price || ""}
+              isLoading={loading || !product}
+            />
+          );
+        })}
       </div>
     </ProductsWrapper>
   );

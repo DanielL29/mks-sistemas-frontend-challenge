@@ -1,3 +1,4 @@
+import { useAppSelector } from "@/hooks/useRedux";
 import Image from "next/image";
 import styled from "styled-components";
 import cartIcon from "../assets/images/cart.svg";
@@ -8,14 +9,16 @@ interface CartButtonProps {
 }
 
 export default function CartButton({ setCart }: CartButtonProps) {
+  const productCounter = useAppSelector((state) => state.productCounter.value);
+
   return (
     <CartButtonWrapper
       onClick={() =>
         setCart({ cartWidth: "486px", invisibleScreenWidth: "100%" })
       }
     >
-      <Image src={cartIcon} alt="cart" width={30} height={30} />
-      <span>0</span>
+      <Image src={cartIcon} alt="cart" />
+      <span>{productCounter}</span>
     </CartButtonWrapper>
   );
 }
@@ -34,8 +37,6 @@ const CartButtonWrapper = styled.div`
 
   img {
     height: auto;
-    width: auto;
-    height: 18px;
     width: 19px;
   }
 
