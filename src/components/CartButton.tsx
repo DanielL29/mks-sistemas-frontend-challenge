@@ -1,5 +1,8 @@
-import { useAppSelector } from "@/hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { getAmount, getCartItems } from "@/store/features/cartItems";
+import { getLocalValue } from "@/store/features/productCounter";
 import Image from "next/image";
+import { useEffect } from "react";
 import styled from "styled-components";
 import cartIcon from "../assets/images/cart.svg";
 import { CartStyleProps } from "../layouts/Header";
@@ -10,6 +13,13 @@ interface CartButtonProps {
 
 export default function CartButton({ setCart }: CartButtonProps) {
   const productCounter = useAppSelector((state) => state.productCounter.value);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getLocalValue());
+    dispatch(getCartItems());
+    dispatch(getAmount());
+  }, []);
 
   return (
     <CartButtonWrapper
