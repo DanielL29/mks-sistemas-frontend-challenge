@@ -1,7 +1,7 @@
 import Image from "next/image";
 import shoppingBagIcon from "@/assets/images/shopping-bag.svg";
 import ContentLoader from "react-content-loader";
-import { BuyButton, Content, PriceTag, ProductWrapper } from "./style";
+import { BuyButton, Content, PriceTag, ProductWrapper } from "./Style";
 import { useCart } from "@/hooks/useCart";
 
 interface ProductCardProps {
