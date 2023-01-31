@@ -93,6 +93,12 @@ const cartItems = createSlice({
     getAmount: (state) => {
       state.amount = JSON.parse(localStorage.getItem("amount")!) || 0;
     },
+    clearCart: (state) => {
+      state.cartItems = [];
+      state.amount = 0;
+      localStorage.removeItem("cartItems");
+      localStorage.removeItem("amount");
+    },
   },
 });
 
@@ -105,6 +111,7 @@ export const {
   incrementCartAmount,
   decrementCartAmount,
   getAmount,
+  clearCart,
 } = cartItems.actions;
 
 export const selectCartItems = (state: RootState) => state.cartItems;
