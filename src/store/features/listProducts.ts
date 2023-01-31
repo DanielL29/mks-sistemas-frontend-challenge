@@ -1,6 +1,6 @@
 import { productService } from "@/services/product";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
+import { RootState } from "..";
 
 export interface Product {
   id: number;
@@ -13,29 +13,11 @@ export interface Product {
   updatedAt: Date;
 }
 
-interface ValidationErrors {
-  errorMessage: string;
-  field_errors: Record<string, string>;
-}
+export const listProducts = createAsyncThunk("products/all", async () => {
+  const response = await productService.getProducts();
 
-export const listProducts = createAsyncThunk(
-  "products/all",
-  async (_, thunkAPI) => {
-    try {
-      const response = await productService.getProducts();
-
-      return response.data.products;
-    } catch (err) {
-      let error: AxiosError<ValidationErrors> = err;
-
-      if (!error.response) {
-        throw error;
-      }
-
-      return thunkAPI.rejectWithValue(error.response.data);
-    }
-  }
-);
+  return response.data.products;
+});
 
 const initialState = {
   products: Array(8).fill(0) as Product[],
@@ -63,5 +45,7 @@ const productsSlice = createSlice({
       });
   },
 });
+
+export const selectListProducts = (state: RootState) => state.listProducts;
 
 export default productsSlice.reducer;

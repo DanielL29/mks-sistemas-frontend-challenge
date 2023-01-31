@@ -11,6 +11,7 @@ import {
   Purchase,
   TitleClose,
 } from "./style";
+import { selectCartItems } from "@/store/features/cartItems";
 
 interface CartProps {
   cart: CartStyleProps;
@@ -20,7 +21,7 @@ interface CartProps {
 export type CartStylePropsPartial = Partial<CartStyleProps>;
 
 export default function Cart({ cart, setCart }: CartProps) {
-  const { cartItems, amount } = useAppSelector((state) => state.cartItems);
+  const { cartItems, amount } = useAppSelector(selectCartItems);
 
   return (
     <>

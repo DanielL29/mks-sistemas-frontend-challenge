@@ -1,12 +1,15 @@
 import ProductCard from "@/components/ProductCard";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { listProducts } from "@/store/features/listProducts";
+import {
+  listProducts,
+  selectListProducts,
+} from "@/store/features/listProducts";
 import styled from "styled-components";
 import { useEffect } from "react";
 
 export default function Products() {
   const dispatch = useAppDispatch();
-  const { products, loading } = useAppSelector((state) => state.listProducts);
+  const { products, loading } = useAppSelector(selectListProducts);
 
   useEffect(() => {
     setTimeout(async () => {

@@ -1,18 +1,21 @@
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { getAmount, getCartItems } from "@/store/features/cartItems";
-import { getLocalValue } from "@/store/features/productCounter";
+import {
+  getLocalValue,
+  selectProductCounter,
+} from "@/store/features/productCounter";
 import Image from "next/image";
 import { useEffect } from "react";
 import styled from "styled-components";
-import cartIcon from "../assets/images/cart.svg";
-import { CartStyleProps } from "../layouts/Header";
+import cartIcon from "@/assets/images/cart.svg";
+import { CartStyleProps } from "@/layouts/Header";
 
 interface CartButtonProps {
   setCart: (cart: CartStyleProps) => void;
 }
 
 export default function CartButton({ setCart }: CartButtonProps) {
-  const productCounter = useAppSelector((state) => state.productCounter.value);
+  const productCounter = useAppSelector(selectProductCounter);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -28,7 +31,7 @@ export default function CartButton({ setCart }: CartButtonProps) {
       }
     >
       <Image src={cartIcon} alt="cart" />
-      <span>{productCounter}</span>
+      <span data-testid="productCounter">{productCounter}</span>
     </CartButtonWrapper>
   );
 }
