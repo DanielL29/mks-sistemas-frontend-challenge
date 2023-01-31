@@ -57,13 +57,11 @@ export const Quantity = styled.div`
     justify-content: space-between;
 
     height: 19px;
-    width: 50px;
     background-color: #ffffff;
     border: 0.3px solid #bfbfbf;
     border-radius: 4px;
     font-weight: 500;
     font-size: 8px;
-    padding: 0 7px;
   }
 
   p {
@@ -72,7 +70,11 @@ export const Quantity = styled.div`
     padding: 0 7px;
   }
 
-  span {
+  button {
+    outline: none;
+    border: none;
+    background-color: #fff;
+    border-radius: 100%;
     cursor: pointer;
   }
 `;
