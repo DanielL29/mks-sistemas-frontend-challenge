@@ -26,11 +26,20 @@ export const productCounter = createSlice({
       state.value -= action.payload;
       localStorage.setItem("productAmount", JSON.stringify(state.value));
     },
+    clearCounter: (state) => {
+      state.value = 0;
+      localStorage.removeItem("productAmount");
+    },
   },
 });
 
-export const { increment, decrement, getLocalValue, decrementByAmount } =
-  productCounter.actions;
+export const {
+  increment,
+  decrement,
+  getLocalValue,
+  decrementByAmount,
+  clearCounter,
+} = productCounter.actions;
 
 export const selectProductCounter = (state: RootState) =>
   state.productCounter.value;
