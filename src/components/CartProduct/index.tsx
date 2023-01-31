@@ -62,7 +62,7 @@ export default function CartProduct({ product, quantity }: CartProductProps) {
           <span onClick={incrementCart}>+</span>
         </div>
       </Quantity>
-      <strong>{Number(product.price)}</strong>
+      <strong>R${Number(product.price)}</strong>
       <FloatClose onClick={removeProductFromCart}>
         <Image src={closeIcon} alt="close" width={0} height={0} />
       </FloatClose>

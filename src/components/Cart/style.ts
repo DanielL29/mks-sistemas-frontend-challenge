@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { CartStylePropsPartial } from "../Cart";
 
 export const InvisibleScreen = styled.div<CartStylePropsPartial>`
-  width: ${({ invisibleScreenWidth }) => invisibleScreenWidth};
+  width: ${({ invisibleScreenWidth }) =>
+    invisibleScreenWidth ? "100%" : "0%"};
   height: 100%;
   position: fixed;
   top: 0;
@@ -12,7 +13,7 @@ export const InvisibleScreen = styled.div<CartStylePropsPartial>`
 `;
 
 export const OpenedCart = styled.div<CartStylePropsPartial>`
-  width: ${({ cartWidth }) => cartWidth};
+  width: ${({ cartWidth }) => (cartWidth ? "486px" : "0px")};
   position: fixed;
   z-index: 2;
   top: 0;
@@ -21,11 +22,15 @@ export const OpenedCart = styled.div<CartStylePropsPartial>`
   background: #0f52ba;
   box-shadow: -5px 0px 6px rgba(0, 0, 0, 0.13);
   transition: all 300ms ease-in-out;
-  padding-left: ${({ cartWidth }) => (cartWidth !== "0px" ? "47px" : "0px")};
+  padding-left: ${({ cartWidth }) => (cartWidth ? "47px" : "0px")};
   padding-top: 36px;
 
   > div {
-    display: ${({ cartWidth }) => (cartWidth !== "0px" ? "initial" : "none")};
+    display: ${({ cartWidth }) => (cartWidth ? "initial" : "none")};
+  }
+
+  @media (max-width: 500px) {
+    width: ${({ cartWidth }) => (cartWidth ? "80%" : "0%")};
   }
 `;
 
@@ -57,7 +62,7 @@ export const CartProducts = styled.div`
   overflow-y: scroll;
   height: 100%;
   padding-top: 5px;
-  padding-bottom: 300px;
+  padding-bottom: 400px;
 
   ::-webkit-scrollbar {
     display: none;
@@ -68,7 +73,8 @@ export const Amount = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 200px;
+  flex-wrap: wrap;
+  width: 486px;
 
   font-weight: 700;
   font-size: 28px;
@@ -77,7 +83,11 @@ export const Amount = styled.div`
   bottom: 0;
   margin: 42px 0;
   background-color: #0f52ba;
-  padding: 30px 30px 97px 0px;
+  padding: 30px 100px 97px 0px;
+
+  @media (max-width: 500px) {
+    width: 80%;
+  }
 `;
 
 export const Purchase = styled.div`
@@ -96,8 +106,13 @@ export const Purchase = styled.div`
   margin-left: -47px;
   cursor: pointer;
   transition: all 200ms ease-in-out;
+  text-align: center;
 
   :hover {
     filter: brightness(1.5);
+  }
+
+  @media (max-width: 500px) {
+    width: 80%;
   }
 `;
