@@ -1,20 +1,8 @@
 import Image from "next/image";
 import closeIcon from "@/assets/images/close.svg";
 import { CartProductWrapper, FloatClose, Quantity } from "./style";
-import {
-  CartItemPayload,
-  decrementCartAmount,
-  decrementProdQuantity,
-  incrementCartAmount,
-  incrementProdQuantity,
-  removeItem,
-} from "@/store/features/cartItems";
-import { useAppDispatch } from "@/hooks/useRedux";
-import {
-  decrement,
-  decrementByAmount,
-  increment,
-} from "@/store/features/productCounter";
+import { CartItemPayload } from "@/store/features/cartItems";
+import { useCart } from "@/hooks/useCart";
 
 interface CartProductProps {
   product: CartItemPayload;
@@ -22,27 +10,7 @@ interface CartProductProps {
 }
 
 export default function CartProduct({ product, quantity }: CartProductProps) {
-  const dispatch = useAppDispatch();
-
-  function incrementCart() {
-    dispatch(incrementProdQuantity(product.id));
-    dispatch(increment());
-    dispatch(incrementCartAmount(Number(product.price)));
-  }
-
-  function decrementCart() {
-    if (quantity > 1) {
-      dispatch(decrementProdQuantity(product.id));
-      dispatch(decrement());
-      dispatch(decrementCartAmount(Number(product.price)));
-    }
-  }
-
-  function removeProductFromCart() {
-    dispatch(removeItem(product.id));
-    dispatch(decrementByAmount(quantity));
-    dispatch(decrementCartAmount(quantity * Number(product.price)));
-  }
+  const { incrementCart, decrementCart, removeProductFromCart } = useCart();
 
   return (
     <CartProductWrapper>
@@ -57,13 +25,13 @@ export default function CartProduct({ product, quantity }: CartProductProps) {
       <Quantity>
         <h2>Qtd:</h2>
         <div>
-          <span onClick={decrementCart}>-</span>
+          <span onClick={() => decrementCart(product, quantity)}>-</span>
           <p>{quantity}</p>
-          <span onClick={incrementCart}>+</span>
+          <span onClick={() => incrementCart(product)}>+</span>
         </div>
       </Quantity>
       <strong>R${Number(product.price)}</strong>
-      <FloatClose onClick={removeProductFromCart}>
+      <FloatClose onClick={() => removeProductFromCart(product, quantity)}>
         <Image src={closeIcon} alt="close" width={0} height={0} />
       </FloatClose>
     </CartProductWrapper>

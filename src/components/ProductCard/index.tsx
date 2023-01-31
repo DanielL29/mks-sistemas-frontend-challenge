@@ -1,10 +1,8 @@
-import { useAppDispatch } from "@/hooks/useRedux";
-import { increment } from "@/store/features/productCounter";
 import Image from "next/image";
 import shoppingBagIcon from "@/assets/images/shopping-bag.svg";
 import ContentLoader from "react-content-loader";
 import { BuyButton, Content, PriceTag, ProductWrapper } from "./style";
-import { addToCart, incrementCartAmount } from "@/store/features/cartItems";
+import { useCart } from "@/hooks/useCart";
 
 interface ProductCardProps {
   id: number;
@@ -23,20 +21,7 @@ export default function ProductCard({
   price,
   isLoading,
 }: ProductCardProps) {
-  const dispatch = useAppDispatch();
-
-  function updateCart() {
-    dispatch(increment());
-    dispatch(
-      addToCart({
-        id,
-        name,
-        photo,
-        price,
-      })
-    );
-    dispatch(incrementCartAmount(Number(price)));
-  }
+  const { updateCart } = useCart();
 
   return (
     <ProductWrapper>
@@ -84,7 +69,10 @@ export default function ProductCard({
           )}
         </p>
       </Content>
-      <BuyButton onClick={updateCart} disabled={isLoading}>
+      <BuyButton
+        onClick={() => updateCart(id, name, photo, price)}
+        disabled={isLoading}
+      >
         <Image src={shoppingBagIcon} alt="shopping-bag" />
         comprar
       </BuyButton>
