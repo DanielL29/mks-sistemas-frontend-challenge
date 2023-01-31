@@ -2,7 +2,7 @@ import Image from "next/image";
 import { CartStyleProps } from "@/layouts/Header";
 import closeIcon from "@/assets/images/close.svg";
 import CartProduct from "../CartProduct";
-import { useAppSelector } from "@/hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import {
   Amount,
   CartProducts,
@@ -11,7 +11,9 @@ import {
   Purchase,
   TitleClose,
 } from "./style";
-import { selectCartItems } from "@/store/features/cartItems";
+import { clearCart, selectCartItems } from "@/store/features/cartItems";
+import { toast } from "react-toastify";
+import { clearCounter } from "@/store/features/productCounter";
 
 interface CartProps {
   cart: CartStyleProps;
@@ -22,6 +24,13 @@ export type CartStylePropsPartial = Partial<CartStyleProps>;
 
 export default function Cart({ cart, setCart }: CartProps) {
   const { cartItems, amount } = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
+
+  function purchase() {
+    toast.success(`Compra de R$${amount.toFixed(2)} efetuada!`);
+    dispatch(clearCounter());
+    dispatch(clearCart());
+  }
 
   return (
     <>
@@ -60,7 +69,7 @@ export default function Cart({ cart, setCart }: CartProps) {
             <h4>Total:</h4>
             <span>R${amount}</span>
           </Amount>
-          <Purchase>Finalizar Compra</Purchase>
+          <Purchase onClick={purchase}>Finalizar Compra</Purchase>
         </div>
       </OpenedCart>
     </>
