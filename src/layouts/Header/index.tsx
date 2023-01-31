@@ -4,14 +4,14 @@ import { useState } from "react";
 import CartButton from "../../components/CartButton";
 
 export interface CartStyleProps {
-  cartWidth: string;
-  invisibleScreenWidth: string;
+  cartWidth: boolean;
+  invisibleScreenWidth: boolean;
 }
 
 export default function Header() {
   const [cart, setCart] = useState<CartStyleProps>({
-    cartWidth: "0px",
-    invisibleScreenWidth: "0%",
+    cartWidth: false,
+    invisibleScreenWidth: false,
   });
 
   return (
@@ -30,6 +30,7 @@ const HeaderWrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 10px;
 
   width: 100%;
   height: 101px;
@@ -46,6 +47,7 @@ const Logo = styled.div`
   align-items: center;
   color: #fff;
   gap: 10px;
+  flex-wrap: wrap;
 
   h1 {
     font-weight: 600;

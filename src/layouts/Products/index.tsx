@@ -14,7 +14,7 @@ export default function Products() {
   useEffect(() => {
     setTimeout(async () => {
       await dispatch(listProducts());
-    }, 1500);
+    }, 1000);
 
     return () => {};
   }, []);
@@ -50,5 +50,16 @@ const ProductsWrapper = styled.div`
   > div {
     display: grid;
     grid-template-columns: repeat(4, 240px);
+  }
+
+  @media (max-width: 1000px) {
+    > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 22px;
+      padding: 0 22px;
+    }
   }
 `;

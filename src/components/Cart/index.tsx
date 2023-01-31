@@ -37,7 +37,7 @@ export default function Cart({ cart, setCart }: CartProps) {
       <InvisibleScreen
         invisibleScreenWidth={cart.invisibleScreenWidth}
         onClick={() =>
-          setCart({ cartWidth: "0px", invisibleScreenWidth: "0%" })
+          setCart({ cartWidth: false, invisibleScreenWidth: false })
         }
       />
       <OpenedCart cartWidth={cart.cartWidth}>
@@ -50,7 +50,7 @@ export default function Cart({ cart, setCart }: CartProps) {
               width={0}
               height={0}
               onClick={() =>
-                setCart({ cartWidth: "0px", invisibleScreenWidth: "0%" })
+                setCart({ cartWidth: false, invisibleScreenWidth: false })
               }
             />
           </TitleClose>

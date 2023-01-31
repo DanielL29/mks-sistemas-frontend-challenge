@@ -32,6 +32,14 @@ export const CartProductWrapper = styled.div`
     font-size: 14px;
     color: #000;
   }
+
+  @media (max-width: 500px) {
+    width: 90%;
+    height: auto;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+  }
 `;
 
 export const Quantity = styled.div`

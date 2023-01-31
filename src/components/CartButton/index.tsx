@@ -26,12 +26,10 @@ export default function CartButton({ setCart }: CartButtonProps) {
 
   return (
     <CartButtonWrapper
-      onClick={() =>
-        setCart({ cartWidth: "486px", invisibleScreenWidth: "100%" })
-      }
+      onClick={() => setCart({ cartWidth: true, invisibleScreenWidth: true })}
     >
       <Image src={cartIcon} alt="cart" />
-      <span data-testid="productCounter">{productCounter}</span>
+      <span>{productCounter}</span>
     </CartButtonWrapper>
   );
 }
@@ -42,7 +40,7 @@ const CartButtonWrapper = styled.div`
   justify-content: center;
   gap: 16px;
 
-  width: 90px;
+  min-width: 90px;
   height: 45px;
   border-radius: 8px;
   background-color: #fff;
