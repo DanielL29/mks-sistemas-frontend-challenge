@@ -10,7 +10,7 @@ import {
   OpenedCart,
   Purchase,
   TitleClose,
-} from "./style";
+} from "./Style";
 import { clearCart, selectCartItems } from "@/store/features/cartItems";
 import { toast } from "react-toastify";
 import { clearCounter } from "@/store/features/productCounter";

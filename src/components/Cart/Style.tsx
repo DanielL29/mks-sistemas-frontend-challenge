@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CartStylePropsPartial } from "../Cart";
+import { CartStylePropsPartial } from ".";
 
 export const InvisibleScreen = styled.div<CartStylePropsPartial>`
   width: ${({ invisibleScreenWidth }) =>

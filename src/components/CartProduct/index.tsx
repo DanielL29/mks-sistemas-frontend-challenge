@@ -1,6 +1,6 @@
 import Image from "next/image";
 import closeIcon from "@/assets/images/close.svg";
-import { CartProductWrapper, FloatClose, Quantity } from "./style";
+import { CartProductWrapper, FloatClose, Quantity } from "./Style";
 import { CartItemPayload } from "@/store/features/cartItems";
 import { useCart } from "@/hooks/useCart";
 
