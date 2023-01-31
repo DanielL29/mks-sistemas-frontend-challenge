@@ -25,9 +25,9 @@ export default function CartProduct({ product, quantity }: CartProductProps) {
       <Quantity>
         <h2>Qtd:</h2>
         <div>
-          <span onClick={() => decrementCart(product, quantity)}>-</span>
+          <button onClick={() => decrementCart(product, quantity)}>-</button>
           <p>{quantity}</p>
-          <span onClick={() => incrementCart(product)}>+</span>
+          <button onClick={() => incrementCart(product)}>+</button>
         </div>
       </Quantity>
       <strong>R${Number(product.price)}</strong>
