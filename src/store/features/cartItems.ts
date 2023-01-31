@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { RootState } from "..";
 
 export interface CartItemPayload {
   id: number;
@@ -105,5 +106,7 @@ export const {
   decrementCartAmount,
   getAmount,
 } = cartItems.actions;
+
+export const selectCartItems = (state: RootState) => state.cartItems;
 
 export default cartItems.reducer;

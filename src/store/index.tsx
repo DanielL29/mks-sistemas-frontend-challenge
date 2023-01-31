@@ -1,15 +1,24 @@
-import { configureStore } from "@reduxjs/toolkit";
+import {
+  combineReducers,
+  configureStore,
+  PreloadedState,
+} from "@reduxjs/toolkit";
 import cartItemsReducer from "./features/cartItems";
 import listProductsReducer from "./features/listProducts";
 import productCounterReducer from "./features/productCounter";
 
-export const store = configureStore({
-  reducer: {
-    productCounter: productCounterReducer,
-    listProducts: listProductsReducer,
-    cartItems: cartItemsReducer,
-  },
+const combinedReducers = combineReducers({
+  productCounter: productCounterReducer,
+  listProducts: listProductsReducer,
+  cartItems: cartItemsReducer,
 });
 
-export type RootState = ReturnType<typeof store.getState>;
-export type AppDispatch = typeof store.dispatch;
+export const store = (preloadedState?: PreloadedState<RootState>) =>
+  configureStore({
+    reducer: combinedReducers,
+    preloadedState,
+  });
+
+export type RootState = ReturnType<typeof combinedReducers>;
+export type AppStore = ReturnType<typeof store>;
+export type AppDispatch = AppStore["dispatch"];
