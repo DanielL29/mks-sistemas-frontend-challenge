@@ -90,11 +90,13 @@ export const Amount = styled.div`
   }
 `;
 
-export const Purchase = styled.div`
+export const Purchase = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
 
+  outline: none;
+  border: none;
   width: 486px;
   height: 97px;
   font-weight: 700;

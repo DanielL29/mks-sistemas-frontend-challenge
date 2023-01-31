@@ -69,7 +69,9 @@ export default function Cart({ cart, setCart }: CartProps) {
             <h4>Total:</h4>
             <span>R${amount}</span>
           </Amount>
-          <Purchase onClick={purchase}>Finalizar Compra</Purchase>
+          <Purchase onClick={purchase} disabled={amount === 0}>
+            Finalizar Compra
+          </Purchase>
         </div>
       </OpenedCart>
     </>
