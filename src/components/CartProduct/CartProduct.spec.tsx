@@ -34,7 +34,7 @@ describe("CartProduct Component", () => {
 
     expect(getByAltText("product")).toBeInTheDocument();
     expect(getByText("Iphone 11 128 GB")).toBeInTheDocument();
-    expect(getByText("5000")).toBeInTheDocument();
+    expect(getByText("R$5000")).toBeInTheDocument();
     expect(getByText("2")).toBeInTheDocument();
   });
 });
